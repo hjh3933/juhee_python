@@ -25,6 +25,7 @@ print("Hello, Markdown!")
 [Google 바로가기](https://www.google.com)
 
 ![이미지 설명](이미지_URL)
+<img src="img.png" width="200">
 
 > 인용문을 넣을 수 있어요.
 >
