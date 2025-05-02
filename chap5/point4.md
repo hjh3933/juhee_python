@@ -45,3 +45,5 @@ for i in range(len(data3)):
 
 print(data3)
 ```
+
+**[실습파일](point1,2,3,4_ex.py)**
