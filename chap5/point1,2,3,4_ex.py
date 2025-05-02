@@ -36,3 +36,27 @@ for i in range(1, len(data1)):
     data1[j + 1] = temp
 
 print(data1)
+
+# 버블정렬
+data2 = [6, 15, 4, 2, 8, 5, 11, 9, 7, 13]
+for i in range(len(data2)):
+    for j in range(0, len(data2) - i - 1):
+        if data2[j] > data2[j + 1]:
+            data2[j], data2[j + 1] = data2[j + 1], data2[j]
+
+print(data2)
+
+# 버블정렬개선
+data3 = [2, 4, 5, 6, 7, 8, 9, 11, 13, 15]
+change = True
+for i in range(len(data3)):
+    # 요소교환이 없는 경우
+    if not change:
+        break
+    change = False  # 요소교환이 발생하지 않은 것으로 설정
+    for j in range(0, len(data3) - i - 1):
+        if data3[j] > data3[j + 1]:
+            data3[j], data3[j + 1] = data3[j + 1], data3[j]
+            change = True  # 요소교환이 발생
+
+print(data3)
