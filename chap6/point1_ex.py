@@ -35,3 +35,37 @@ def search(m, n):
 
 
 print(search(M, N))
+
+# 미로 탈출
+# 5 6
+# 101010
+# 111111
+# 000001
+# 111111
+# 111111
+
+n, m = map(int, input().split())
+maze = []
+
+for _ in range(n):
+    maze.append(list(map(int, input())))
+
+# 시작위치
+pos = [[0, 0, 0]]
+
+while len(pos) > 0:
+    x, y, depth = pos.pop(0)
+    if x == n - 1 and y == m - 1:
+        print(depth + 1)
+        break
+    # 탐색완료 설정
+    maze[x][y] = 2
+    # 상하좌우(동시)탐색
+    if y - 1 >= 0 and maze[x][y - 1] == 1:
+        pos.append([x, y - 1, depth + 1])
+    if y + 1 < m and maze[x][y + 1] == 1:
+        pos.append([x, y + 1, depth + 1])
+    if x - 1 >= 0 and maze[x - 1][y] == 1:
+        pos.append([x - 1, y, depth + 1])
+    if x + 1 < n and maze[x + 1][y] == 1:
+        pos.append([x + 1, y, depth + 1])

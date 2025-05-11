@@ -55,4 +55,32 @@ def search(m, n):
     return search(m - 1, n) + search(m, n - 1)
 ```
 
+**BFS를 활용한 최단경로문제**
+
+- 문제: N × M 크기의 직사각형 미로가 주어진다. 각각의 칸은 0 또는 1로 표시되어 있고,
+  0은 벽, 1은 이동 가능한 칸을 의미한다. 당신은 (1, 1)에서 시작하여 (N, M) 위치로 이동하려고 한다. 이동할 때는 상하좌우로만 이동할 수 있으며, 벽(0)은 통과할 수 없다. 이때, 가장 빠른 경로로 이동할 때 이동하는 칸의 수는 얼마인지 구하시오.
+- 시작지점은 (1,1) 도착지점은 (N, M)이며, 1은 길, 0은 벽을 의미한다
+- pos를 통해 x,y,depth를 관리한다
+- 목표좌표에 도달하면 종료 시작점부터 도착지점까지의 칸 수(이동횟수+1)를 출력하도록한다
+- 조건문을 통해 상하좌우를 탐색한다
+
+```python
+while len(pos) > 0:
+    x, y, depth = pos.pop(0)
+    if x == n - 1 and y == m - 1:
+        print(depth + 1)
+        break
+    # 탐색완료 설정
+    maze[x][y] = 2
+    # 상하좌우(동시)탐색
+    if y - 1 >= 0 and maze[x][y - 1] == 1:
+        pos.append([x, y - 1, depth + 1])
+    if y + 1 < m and maze[x][y + 1] == 1:
+        pos.append([x, y + 1, depth + 1])
+    if x - 1 >= 0 and maze[x - 1][y] == 1:
+        pos.append([x - 1, y, depth + 1])
+    if x + 1 < n and maze[x + 1][y] == 1:
+        pos.append([x + 1, y, depth + 1])
+```
+
 **[실습파일](point1_ex.py)**
