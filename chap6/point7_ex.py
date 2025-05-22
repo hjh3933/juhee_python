@@ -1,6 +1,4 @@
 # 역폴란드 표기법
-
-
 def calc(expression):
     stack = []
 
