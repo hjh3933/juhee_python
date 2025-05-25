@@ -28,3 +28,28 @@ def calc(expression):
 
 
 print(calc("4 6 2 + * 3 1 - 5 * -"))
+
+
+# 유클리드 호제법
+def gcd(a, b):
+    r = a % b
+
+    while r != 0:
+        a, b = b, r
+        r = a % b
+
+    return b
+
+
+print(gcd(1274, 975))
+
+
+# 나머지 직접 대입
+def gcd2(a, b):
+    while b != 0:
+        a, b = b, a % b
+
+    return a
+
+
+print(gcd2(1274, 975))
