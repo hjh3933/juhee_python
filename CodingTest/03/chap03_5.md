@@ -29,5 +29,32 @@
 **문제 011**
 
 - 백준 1874
+- 1~N까지의 숫자가 있고, 특정 순서를 가지는 수열 형태로 N개의 숫자가 주어진다. 이 때 오름차순으로 push되는 스택에 pop을 통하여 해당 수열을 구현할 수 있는지 판단하는 문제, 구현가능한 경우 1부터 N까지의 숫자를 push, pop하는 순서를 출력하고 불가능한 경우 No를 출력하도록 한다
+- A에 수열을 저장하고, answer에는 작동과정을 저장한다
+- 자연수 num을 1로 초기화, 현재 수열값 su와 비교하여
+  - 현재 수열값이 자연수보다 큰 경우 stack에 계속 값을 추가한다, 자연수는 +1씩 증가
+  - 현재 수열값이 자연수num과 같아지면 pop하고 해당 과정들을 answer에 기록한다
+  - 현재 수열값이 자연수보다 작은경우 stack에서 pop한 값n이 현재 수열값su보다 크다면 해당 수열은 구현 불가능하므로 NO를 출력한다
+  - 현재 수열값이 자연수보다 작지만, stack에서 pop한 값이 현재 수열값보다 작다면 answer에 - 작업을 추가하고 다시 반복문을 진행한다
+
+```python
+for i in range(N):
+    su = A[i]
+    if su >= num:
+        while su >= num:
+            stack.append(num)
+            num += 1
+            answer.append("+")
+        stack.pop()
+        answer.append("-")
+    else:
+        n = stack.pop()
+        if n > su:
+            print("NO")
+            result = False
+            break
+        else:
+            answer.append("-")
+```
 
 **[실습파일](chap03_5.py)**
