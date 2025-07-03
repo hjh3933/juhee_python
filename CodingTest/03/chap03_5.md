@@ -76,4 +76,22 @@ while myStack:
     ans[myStack.pop()] = -1
 ```
 
+**문제 013**
+
+- 백준 2164
+- N이 주어졌을 때, 1~N까지의 숫자가 적힌 카드가 있고 맨 위가 1 맨 아래가 N의 형태로 쌓여있다고 가정한다. 첫번째 카드는 버리고 두번째 카드는 가장 아래로 넘기는 과정을 카드의 개수가 1개가 될 때까지 반복하면 가장 마지막의 남는 카드의 번호를 출력하는 문제
+- 선입선출 queue의 성질을 활용하여 해결할 수 있다
+- `from collections import deque`: deque를 사용하여 queue를 구현할 수 있음
+- myQueue에 append를 사용하여 1부터 N까지 요소를 추가한다
+- popleft를 두번 실행: 1번은 버리기, 2번은 맨 뒤에 추가, while문을 통해 1장 남았을 때의 결과 출력
+
+```python
+for i in range(1, N + 1):
+    myQueue.append(i)
+
+while len(myQueue) > 1:
+    myQueue.popleft()
+    myQueue.append(myQueue.popleft())
+```
+
 **[실습파일](chap03_5.py)**

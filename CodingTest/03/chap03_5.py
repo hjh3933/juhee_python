@@ -1,53 +1,67 @@
 import sys
+from collections import deque
 
 input = sys.stdin.readline
 
 # 011
-N = int(input())
-A = [0] * N
-for i in range(N):
-    A[i] = int(input())
+# N = int(input())
+# A = [0] * N
+# for i in range(N):
+#     A[i] = int(input())
 
-stack = []
-num = 1
-result = True
-answer = []
+# stack = []
+# num = 1
+# result = True
+# answer = []
 
-for i in range(N):
-    su = A[i]
-    if su >= num:
-        while su >= num:
-            stack.append(num)
-            num += 1
-            answer.append("+")
-        stack.pop()
-        answer.append("-")
-    else:
-        n = stack.pop()
-        if n > su:
-            print("NO")
-            result = False
-            break
-        else:
-            answer.append("-")
+# for i in range(N):
+#     su = A[i]
+#     if su >= num:
+#         while su >= num:
+#             stack.append(num)
+#             num += 1
+#             answer.append("+")
+#         stack.pop()
+#         answer.append("-")
+#     else:
+#         n = stack.pop()
+#         if n > su:
+#             print("NO")
+#             result = False
+#             break
+#         else:
+#             answer.append("-")
 
-if result:
-    for i in answer:
-        print(i)
+# if result:
+#     for i in answer:
+#         print(i)
 
 # 012
+# N = int(input())
+# A = list(map(int, input().split()))
+# ans = [0] * N
+# myStack = []
+
+# for i in range(N):
+#     while myStack and A[myStack[-1]] < A[i]:
+#         ans[myStack.pop()] = A[i]
+#     myStack.append(i)  # 인덱스를 저장
+
+# while myStack:
+#     ans[myStack.pop()] = -1
+
+# for i in range(N):
+#     print(ans[i], end=" ")
+
+# 013
 N = int(input())
-A = list(map(int, input().split()))
-ans = [0] * N
-myStack = []
+myQueue = deque()
 
-for i in range(N):
-    while myStack and A[myStack[-1]] < A[i]:
-        ans[myStack.pop()] = A[i]
-    myStack.append(i)  # 인덱스를 저장
+for i in range(1, N + 1):
+    myQueue.append(i)
 
-while myStack:
-    ans[myStack.pop()] = -1
+while len(myQueue) > 1:
+    myQueue.popleft()
+    myQueue.append(myQueue.popleft())
 
-for i in range(N):
-    print(ans[i], end=" ")
+print(myQueue[0])
