@@ -94,4 +94,25 @@ while len(myQueue) > 1:
     myQueue.append(myQueue.popleft())
 ```
 
+**문제 014**
+
+- 백준 11286
+- N개의 정수가 주어졌을 때,
+  - 0이 아닌 경우: 배열에 저장
+  - 0인 경우: 배열에서 절댓값이 가장 작은 수를 꺼내 출력, 절댓값이 같은 수가 있는 경우 가장 작은 수를 출력
+- 우선순위 큐를 사용하여 구현할 수 있다. 1. 절댓값, 2. 수의 크기 두 가지 기준이 있으므로 우선순위를 직접 지정해야한다
+
+```python
+for i in range(N):
+    request = int(input())
+    if request == 0:
+        if myQueue.empty():
+            print("0\n")
+        else:
+            temp = myQueue.get()
+            print(str((temp[1])) + "\n")
+    else:
+        myQueue.put((abs(request), request))
+```
+
 **[실습파일](chap03_5.py)**
