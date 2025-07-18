@@ -17,5 +17,22 @@
 **문제 019**
 
 - 백준 11004번
+- N개의 수가 주어진다. 이를 오름차순 정렬했을 때 k번째에 있는 수를 구하는 프로그램을 작성하시오
+- 첫번째 줄에 N k, 두번째 줄에 N개의 정수가 a1 a2 a3 ... 주어진다
+- 퀵정렬을 사용하여 중간위치를 피벗으로 설정한 다음 맨 앞의 값과 swap 한다 -> i, j 이동을 편하게 하기 위함
+-
 
-**[실습파일](chap04_1.py)**
+```python
+def quickSort(S, E, K):
+    global A
+    if S < E:
+        pivot = partition(S, E)
+        if pivot == K:
+            return
+        elif K < pivot:
+            quickSort(S, pivot - 1, K)
+        else:
+            quickSort(pivot + 1, E, K)
+```
+
+**[실습파일](chap04_4.py)**

@@ -33,4 +33,4 @@ for i in range(1, N):
     A[insert_point] = insert_value
 ```
 
-**[실습파일](chap04_1.py)**
+**[실습파일](chap04_3.py)**

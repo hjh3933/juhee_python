@@ -24,4 +24,4 @@ for i in range(len(A)):
             A[j] = temp
 ```
 
-**[실습파일](chap04_1.py)**
+**[실습파일](chap04_2.py)**
