@@ -20,7 +20,8 @@
 - N개의 수가 주어진다. 이를 오름차순 정렬했을 때 k번째에 있는 수를 구하는 프로그램을 작성하시오
 - 첫번째 줄에 N k, 두번째 줄에 N개의 정수가 a1 a2 a3 ... 주어진다
 - 퀵정렬을 사용하여 중간위치를 피벗으로 설정한 다음 맨 앞의 값과 swap 한다 -> i, j 이동을 편하게 하기 위함
--
+- quickSort: partition 함수를 통해 pivot을 재설정함, pivot과 k의 대소를 비교하여 새로운 집단을 설정
+- partiion: i와 j값을 이동하면서 본격적인 정렬을 하는 함수
 
 ```python
 def quickSort(S, E, K):
@@ -33,6 +34,34 @@ def quickSort(S, E, K):
             quickSort(S, pivot - 1, K)
         else:
             quickSort(pivot + 1, E, K)
+
+def partition(S, E):
+    global A
+
+    if S + 1 == E:
+        if A[S] > A[E]:
+            swap(S, E)
+        return E
+
+    M = (S + E) // 2
+    swap(S, M)
+    pivot = A[S]
+    i = S + 1
+    j = E
+
+    while i <= j:
+        while pivot < A[j] and j > 0:
+            j = j - 1
+        while pivot > A[i] and i < len(A) - 1:
+            i = i + 1
+        if i <= j:
+            swap(i, j)
+            i = i + 1
+            j = j - 1
+
+    A[S] = A[j]
+    A[j] = pivot
+    return j
 ```
 
 **[실습파일](chap04_4.py)**
