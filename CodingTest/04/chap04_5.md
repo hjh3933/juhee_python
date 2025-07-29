@@ -12,5 +12,44 @@
 - 백준 2751번
 - 첫줄에 N, 두번째 줄부터 N개의 수가 한줄당 하나씩 주어질 때 오름차순 정렬하는 프로그램을 작성하시오
 - 정렬할 그룹을 최소길일 나누고 그룹마다 정렬 -> 병합 과정을 반복
+- 원소가 하나(e-s<1)일 경우 정렬할 필요가 없으므로 리턴
+- s, e는 각각 왼쪽, 오른쪽 끝요소
+- 중간점 m을 구하여 왼쪽구간(s,m)과 오른쪽구간(m+1, e)를 재귀정렬
+- index1은 왼쪽집합 1번, index2는 오른쪽집합 1번요소를 뜻함, k는 A에 넣을 인덱스 세는 용도, index1과2 비교하며 더 작은것부터 넣는것
+- while문으로 index1,index2가 각자 끝지점에 도달하기 전까지 반복문실행(m, e)
+- 한쪽집합을 다 넣고도 남은 값이 있는 경우 추가처리해주는방식
+
+```python
+def merge_sort(s, e):
+    if e - s < 1:
+        return
+    # 분할
+    m = int(s + (e - s) / 2)
+    merge_sort(s, m)
+    merge_sort(m + 1, e)
+    for i in range(s, e + 1):
+        tmp[i] = A[i]
+    # 병합
+    k = s
+    index1 = s
+    index2 = m + 1
+    while index1 <= m and index2 <= e:  # 두 그룹 병합 로직
+        if tmp[index1] > tmp[index2]:
+            A[k] = tmp[index2]
+            k += 1
+            index2 += 1
+        else:
+            A[k] = tmp[index1]
+            k += 1
+            index1 += 1
+    while index1 <= m:  # 한쪽 그룹이 모두 선택된 후 남아있는 값 정리
+        A[k] = tmp[index1]
+        k += 1
+        index1 += 1
+    while index2 <= e:
+        A[k] = tmp[index2]
+        k += 1
+        index2 += 1
+```
 
 **[실습파일](chap04_5.py)**
