@@ -52,4 +52,47 @@ def merge_sort(s, e):
         index2 += 1
 ```
 
+**문제 021**
+
+- 백준 1517번
+- N개의 수로 이뤄진 수열 A[]가 있을 때 버블정렬을 수행하는 경우 swap이 총 몇번 발생하는지 알아내는 프로그램을 작성하시오
+- 1 <= N <= 500000
+- N의 최대범위가 500000이므로 O(nlogn)의 시간복잡도를 가지는 알고리즘을 사용해야한다
+- 문제에서 구하는 버블정렬은 시간안에 해결이 불가능하기 때문에 병합정렬을 사용하여 해결할 수 있다
+- 병합정렬의 과정에서 index의 이동거리를 계산하여 swap한 것과 같은 횟수를 저장할 수 있다
+
+```python
+def merge_sort(s, e):
+    global result
+    if e - s < 1:
+        return
+    m = int(s + (e - s) / 2)
+    merge_sort(s, m)  # 재귀함수 구현
+    merge_sort(m + 1, e)
+    for i in range(s, e + 1):
+        tmp[i] = A[i]
+    k = s
+    index1 = s
+    index2 = m + 1
+    # 병합로직
+    while index1 <= m and index2 <= e:
+        if tmp[index1] > tmp[index2]:
+            A[k] = tmp[index2]
+            result = result + index2 - k  # 뒤쪽 데이터값이 더 작다면 결과값 업데이트
+            k += 1
+            index2 += 1
+        else:
+            A[k] = tmp[index1]
+            k += 1
+            index1 += 1
+    while index1 <= m:
+        A[k] = tmp[index1]
+        k += 1
+        index1 += 1
+    while index2 <= e:
+        A[k] = tmp[index2]
+        k += 1
+        index2 += 1
+```
+
 **[실습파일](chap04_5.py)**
